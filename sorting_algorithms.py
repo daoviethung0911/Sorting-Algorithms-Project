@@ -25,7 +25,7 @@ def selection_sort(arr: list):
     
     end_time = time.perf_counter()
     execution_time = (end_time - start_time) * 1000
-    return (execution_time, comparisons)
+    return arr, (execution_time, comparisons)
 
 
 def insertion_sort(L: list):
