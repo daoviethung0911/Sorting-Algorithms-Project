@@ -99,7 +99,6 @@ def radix_sort(L: list):
 
 
 def flash_sort(arr: list):
-    def flash_sort(arr):
     comparisons = 0
     start_time = time.perf_counter()
 
