@@ -1,1 +1,1 @@
-from sorting_algorithms import SortingAlgorithms
+from sorting_algorithms import *
