@@ -28,7 +28,30 @@ def selection_sort(arr: list):
 
 
 def insertion_sort(L: list):
-    pass
+    data = L.copy()
+    start_time = time.perf_counter()
+    cmp_cnt = 0
+    n = len(data)
+    for i in range(1, n):
+        cmp_cnt += 1
+        tmp = data[i]
+        j = i - 1
+        while True:
+            cmp_cnt += 1 
+            if j >= 0:
+                cmp_cnt += 1 
+                if tmp < data[j]:
+                    data[j + 1] = data[j]
+                    j -= 1
+                else:
+                    break
+            else:
+                break
+        data[j + 1] = tmp
+    cmp_cnt += 1 
+    end_time = time.perf_counter()
+    running_time = (end_time - start_time) * 1000
+    return data, (running_time, cmp_cnt)
 
 
 def binary_insertion_sort(L: list):
@@ -41,10 +64,13 @@ def bubble_sort(L: list):
     cmp_cnt = 0
     n = len(L)
     for i in range(0, n):
+        cmp_cnt += 1
         for j in range(0, n - i - 1):
-            cmp_cnt += 1
+            cmp_cnt += 2
             if data[j] > data[j + 1]:
                 data[j], data[j + 1] = data[j + 1], data[j]
+        cmp_cnt += 1
+    cmp_cnt += 1
     end_time = time.perf_counter()
     running_time = end_time - start_time
     return data, (running_time * 1000, cmp_cnt)
