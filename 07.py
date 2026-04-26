@@ -40,8 +40,6 @@ def command_3(algo_name: str, input_size: int, output_param: str):
 def command_4(algo_1: str, algo_2: str, input_file: str):
     arr = read_input_file(input_file)
     input_size = len(arr)
-    arr1 = arr.copy()
-    arr2 = arr.copy()
     if algo_1 not in sorting_map :
         print(f"Lỗi: Không tìm thấy thuật toán '{algo_1}' trong hệ thống!")
         return
@@ -51,9 +49,9 @@ def command_4(algo_1: str, algo_2: str, input_file: str):
 
     sort_function_1 = sorting_map[algo_1]
     sort_function_2 = sorting_map[algo_2]
-    sorted_arr_1, time_comps_1 = sort_function_1(arr1)
+    sorted_arr_1, time_comps_1 = sort_function_1(arr)
     time1, comps1 = time_comps_1
-    sorted_arr_2, time_comps_2 = sort_function_2(arr2)
+    sorted_arr_2, time_comps_2 = sort_function_2(arr)
     time2, comps2 = time_comps_2
 
     print("COMPARE MODE")
