@@ -1,6 +1,5 @@
 import time
-#Mỗi cái sort return running time và number of comparisons ở dạng tuple cho đồng bộ nha mn (time, comp). (Time đơn vị ms nha)
-#Mọi người nhớ copy list để ko làm thay đổi data tái sử dụng nha.
+#Mỗi cái sort return running time và number of comparisons ở dạng tuple cho đồng bộ nha mn  sorted_array, (time, comp). (Time đơn vị ms nha)
 def selection_sort(arr: list):
     comparisons = 0
     start_time = time.perf_counter()
