@@ -1,6 +1,7 @@
 #Mỗi cái sort return running time và number of comparisons ở dạng tuple cho đồng bộ nha mn  sorted_array, (time, comp). (Time đơn vị ms nha)
 import time
-def selection_sort(arr: list):
+def selection_sort(L: list):
+    arr = L.copy()
     comparisons = 0
     start_time = time.perf_counter()
 
@@ -70,7 +71,8 @@ def quick_sort(L: list):
     pass
 
 
-def counting_sort(arr: list):
+def counting_sort(L: list):
+    arr = L.copy()
     comparisons = 0
     start_time = time.perf_counter()
 
@@ -108,7 +110,8 @@ def radix_sort(L: list):
     pass
 
 
-def flash_sort(arr: list):
+def flash_sort(L: list):
+    arr = L.copy()
     comparisons = 0
     start_time = time.perf_counter()
 
