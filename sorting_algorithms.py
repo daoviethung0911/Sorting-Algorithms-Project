@@ -1,5 +1,5 @@
-import time
 #Mỗi cái sort return running time và number of comparisons ở dạng tuple cho đồng bộ nha mn  sorted_array, (time, comp). (Time đơn vị ms nha)
+import time
 def selection_sort(arr: list):
     comparisons = 0
     start_time = time.perf_counter()
@@ -47,7 +47,7 @@ def bubble_sort(L: list):
                 data[j], data[j + 1] = data[j + 1], data[j]
     end_time = time.perf_counter()
     running_time = end_time - start_time
-    return (running_time * 1000, cmp_cnt)
+    return data, (running_time * 1000, cmp_cnt)
 
 
 def shaker_sort(L: list):
@@ -75,7 +75,7 @@ def counting_sort(arr: list):
     start_time = time.perf_counter()
 
     if not arr:
-        return [], 0, 0.0
+        return [], (0, 0.0)
     n = len(arr)
     Maxval = -1
     for i in arr:
@@ -113,7 +113,7 @@ def flash_sort(arr: list):
     start_time = time.perf_counter()
 
     if not arr:
-        return [], 0, 0.0
+        return [], (0, 0.0)
 
     n = len(arr)
     
@@ -139,7 +139,7 @@ def flash_sort(arr: list):
     comparisons += 1
     if min_val == max_val:
         end_time = time.perf_counter()
-        return arr, comparisons, (end_time - start_time) * 1000
+        return arr, (comparisons, (end_time - start_time) * 1000)
 
     m = int(0.45 * n) 
     L = [0] * m
