@@ -81,8 +81,37 @@ def shaker_sort(L: list):
     pass
 
 
+import time
+
 def shell_sort(L: list):
-    pass
+    data = L.copy()
+    start_time = time.perf_counter()
+    cmp_cnt = 0
+    n = len(data)
+    gap = n // 2
+    while gap > 0:
+        cmp_cnt += 1
+        for i in range(gap, n):
+            cmp_cnt += 1
+            tmp = data[i]
+            j = i
+            while True:
+                cmp_cnt += 1
+                if j >= gap:
+                    cmp_cnt += 1
+                    if data[j - gap] > tmp:
+                        data[j] = data[j - gap]
+                        j -= gap
+                    else:
+                        break
+                else:
+                    break
+            data[j] = tmp
+        gap //= 2
+    cmp_cnt += 1
+    end_time = time.perf_counter()
+    running_time = (end_time - start_time) * 1000
+    return data, (running_time, cmp_cnt)
 
 
 def heap_sort(L: list):
