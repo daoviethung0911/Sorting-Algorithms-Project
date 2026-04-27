@@ -44,10 +44,10 @@ def command_3(algo_name: str, input_size: int, output_param: str):
         return
     sort_function = sorting_map[algo_name]
 
-    for order in ["sorted", "reverse", "nearly-sorted", "random"]:
+    for order in ["random", "nearly-sorted", "sorted", "reverse"]:
         print(f"Input order: {order}")
         print('-------------')
-        arr = generate_data(input_size, data_type=order)
+        arr = generate_data_v2(input_size, data_type=order)
         sorted_arr, time_comps = sort_function(arr)
         exec_time, comps = time_comps
 
