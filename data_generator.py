@@ -36,6 +36,20 @@ def generate_data(n, data_type):
         print("Error: unknown data type!")
         return None
 
+def generate_data_v2(n, data_type):
+    """Main function to generate data based on type."""
+    #["sorted", "reverse", "nearly-sorted", "random"]
+    if data_type == "random":
+        return generate_random_data(n)
+    elif data_type == "sorted":
+        return generate_sorted_data(n)
+    elif data_type == "reverse":
+        return generate_reverse_data(n)
+    elif data_type == "nearly-sorted":
+        return generate_nearly_sorted_data(n)
+    else:
+        print("Error: unknown data type!")
+        return None
 # Usage example:
 # n = 10
 # random_array = generate_data(n, 0)
