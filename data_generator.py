@@ -38,14 +38,14 @@ def generate_data(n, data_type):
 
 def generate_data_v2(n, data_type):
     """Main function to generate data based on type."""
-    #["sorted", "reverse", "nearly-sorted", "random"]
-    if data_type == "random":
+    #["Randomize", "Nearly Sorted", "Sorted", "Reversed"]
+    if data_type == "Randomize":
         return generate_random_data(n)
-    elif data_type == "sorted":
+    elif data_type == "Sorted":
         return generate_sorted_data(n)
-    elif data_type == "reverse":
+    elif data_type == "Reversed":
         return generate_reverse_data(n)
-    elif data_type == "nearly-sorted":
+    elif data_type == "Nearly Sorted":
         return generate_nearly_sorted_data(n)
     else:
         print("Error: unknown data type!")
