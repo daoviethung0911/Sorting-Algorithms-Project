@@ -55,8 +55,51 @@ def insertion_sort(L: list):
     return data, (running_time, cmp_cnt)
 
 
+def binary_search(arr, val, start, end, cnt):
+    cnt[0] += 1
+    if start == end:
+        cnt[0] += 1
+        if arr[start] > val:
+            return start
+        else:
+            return start + 1
+
+    cnt[0] += 1
+    if start > end:
+        return start
+
+    mid = (start + end) // 2
+    
+    cnt[0] += 1
+    if arr[mid] < val:
+        return binary_search(arr, val, mid + 1, end, cnt)
+    else:
+        cnt[0] += 1
+        if arr[mid] > val:
+            return binary_search(arr, val, start, mid - 1, cnt)
+        else:
+            return mid
+
 def binary_insertion_sort(L: list):
-    pass
+    data = L.copy()
+    start_time = time.perf_counter()
+    cmp_cnt = [0]
+    
+    for i in range(1, len(data)):
+        cmp_cnt[0] += 1
+        val = data[i]
+        
+        # Tìm vị trí chèn bằng Binary Search
+        j = binary_search(data, val, 0, i - 1, cmp_cnt)
+        
+        data = data[:j] + [val] + data[j:i] + data[i+1:]
+        
+    cmp_cnt[0] += 1 # Lần kiểm tra kết thúc vòng lặp for
+    
+    end_time = time.perf_counter()
+    running_time = end_time - start_time
+
+    return data, (running_time * 1000, cmp_cnt[0])
 
 
 def bubble_sort(L: list):
@@ -118,13 +161,96 @@ def heap_sort(L: list):
     pass
 
 
+def merge(arr1, arr2, arr, cnt):
+    i = j = 0
+    cnt[0] += 1
+    while i + j < len(arr):
+        cnt[0] += 1 
+        if j == len(arr2):
+            arr[i+j] = arr1[i]
+            i += 1
+        else:
+            cnt[0] += 1
+            if i < len(arr1):
+                cnt[0] += 1
+                if arr1[i] < arr2[j]:
+                    arr[i+j] = arr1[i]
+                    i += 1
+                else:
+                    arr[i+j] = arr2[j]
+                    j += 1
+            else:
+                arr[i+j] = arr2[j]
+                j += 1    
+        cnt[0] += 1
+
+def merge_sort_add(arr, cnt):
+    cnt[0] += 1
+    if len(arr) <= 1:
+        return
+    
+    n = len(arr)
+    arr1 = arr[:n//2]
+    arr2 = arr[n//2:]
+    
+    merge_sort_add(arr1, cnt)
+    merge_sort_add(arr2, cnt)
+    merge(arr1, arr2, arr, cnt)
+
 def merge_sort(L: list):
-    pass
+    data = L.copy()
+    start_time = time.perf_counter()
+    cmp_cnt = [0] 
+
+    merge_sort_add(data, cmp_cnt)
+    
+    end_time = time.perf_counter()
+    running_time = end_time - start_time
+    return data, (running_time * 1000, cmp_cnt[0])
 
 
+def partitional_hoare(arr, low, high, cnt):
+    i, j = low - 1, high + 1
+    # Randomized Quick Sort
+    # tránh trường hợp xấu nhất O(N^2) khi mảng đã được sort sẵn.
+    # rd_idx = random.randint(low, high)
+    # arr[low], arr[rd_idx] = arr[rd_idx], arr[low]
+    p = arr[low]
+    while True: 
+        while True: # Tìm phần tử bên trái lớn hơn hoặc bằng pivot
+            i += 1
+            cnt[0] += 1
+            if arr[i] >= p:
+                break
+        while True: # Tìm phần tử bên phải nhỏ hơn hoặc bằng pivot
+            j -= 1
+            cnt[0] += 1
+            if arr[j] <= p:
+                break
+        cnt[0] += 1
+        if i >= j:
+            break
+        arr[i], arr[j] = arr[j], arr[i]
+    return j
+
+def quick_sort_hoare(arr, low, high, cnt):
+    cnt[0] += 1
+    if low >= high:
+        return
+        
+    pivot = partitional_hoare(arr, low, high, cnt)
+    quick_sort_hoare(arr, low, pivot, cnt)
+    quick_sort_hoare(arr, pivot + 1, high, cnt)      
+    
 def quick_sort(L: list):
-    pass
-
+    data = L.copy()
+    start_time = time.perf_counter()
+    
+    cmp_cnt = [0] 
+    quick_sort_hoare(data, 0, len(data) - 1, cmp_cnt)
+    end_time = time.perf_counter()
+    running_time = end_time - start_time
+    return data, (running_time * 1000, cmp_cnt[0])
 
 def counting_sort(L: list):
     arr = L.copy()
