@@ -44,7 +44,7 @@ def command_3(algo_name: str, input_size: int, output_param: str):
         return
     sort_function = sorting_map[algo_name]
 
-    for order in ["random", "nearly-sorted", "sorted", "reverse"]:
+    for order in ["Randomize", "Nearly Sorted", "Sorted", "Reversed"]:
         print(f"Input order: {order}")
         print('-------------')
         arr = generate_data_v2(input_size, data_type=order)
