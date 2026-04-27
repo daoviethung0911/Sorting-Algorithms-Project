@@ -48,9 +48,16 @@ def command_3(algo_name: str, input_size: int, output_param: str):
         print(f"Input order: {order}")
         print('-------------')
         arr = generate_data_v2(input_size, data_type=order)
+        if order == "Randomize":
+            write_output_file("input1.txt", arr)
+        elif order == "Nearly Sorted":
+            write_output_file("input2.txt", arr)            
+        elif order == "Sorted":
+            write_output_file("input3.txt", arr)            
+        elif order == "Reversed":
+            write_output_file("input4.txt", arr)            
         sorted_arr, time_comps = sort_function(arr)
         exec_time, comps = time_comps
-
         if output_param == "-time":
             print(f"Running time (if required): {exec_time:.4f}")
             print()
