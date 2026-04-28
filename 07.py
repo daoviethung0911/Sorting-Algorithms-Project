@@ -29,12 +29,78 @@ def command_1(algo_name: str, input_file: str, output_param: str):
     write_output_file("output.txt", sorted_arr)
 
 
-def command_2(algo_name: str, input_size: int, input_order: str, output_param: str):
-    pass
+def command_2(args):
+    """
+    Xử lý Command 2: > python groupid.py -a Algorithm Input_size Input_order Output_parameter
+    """
+    algorithm_name = args[2]
+    input_size = int(args[3])
+    input_order = args[4]
+    output_param = args[5]
+
+    data_type = ORDER_MAP.get(input_order, 0)
+    arr = generate_data(input_size, data_type)
+    
+    write_output_file("input.txt", arr) # Ghi mảng đầu vào ra file
+
+    print("ALGORITHM MODE")
+    print(f"Algorithm: {algorithm_name}")
+    print(f"Input size: {input_size}")
+    print(f"Input order: {ORDER_NAME.get(input_order, 'Unknown')}")
+    print("-------------------------")
+
+    if algorithm_name not in sorting_map:
+        print(f"Error: Thuật toán {algorithm_name} chưa được hỗ trợ.")
+        return
+    
+    sort_function = sorting_map[algorithm_name]
+
+    tmp = sort_function(arr)
+    sorted_arr, running_time_ms, comparisons = tmp[0], tmp[1][0], tmp[1][1]
+    
+    write_output_file("output.txt", sorted_arr) # Ghi mảng đã sắp xếp ra file
+
+    if output_param in ["-time", "-both"]:
+        print(f"Running time: {running_time_ms:.2f} ms")
+    if output_param in ["-comp", "-both"]:
+        print(f"Comparisons: {comparisons}")
 
 
 def command_3(algo_name: str, input_size: int, output_param: str):
-    pass
+    print("ALGORITHM MODE")
+    print(f"Algorithm: {algo_name}")
+    print(f"Input size: {input_size}")
+    print("-------------------------")
+
+    if algo_name not in sorting_map:
+        print(f"Lỗi: Không tìm thấy thuật toán '{algo_name}' trong hệ thống!")
+        return
+    sort_function = sorting_map[algo_name]
+
+    for order in ["Randomize", "Nearly Sorted", "Sorted", "Reversed"]:
+        print(f"Input order: {order}")
+        print('-------------')
+        arr = generate_data(input_size, data_type=ORDER_MAP[order])
+        if order == "Randomize":
+            write_output_file("input1.txt", arr)
+        elif order == "Nearly Sorted":
+            write_output_file("input2.txt", arr)            
+        elif order == "Sorted":
+            write_output_file("input3.txt", arr)            
+        elif order == "Reversed":
+            write_output_file("input4.txt", arr)            
+        sorted_arr, time_comps = sort_function(arr)
+        exec_time, comps = time_comps
+        if output_param == "-time":
+            print(f"Running time (if required): {exec_time:.4f}")
+            print()
+        if output_param == "-comp":
+            print(f"Comparisons (if required): {comps}")
+            print()
+        if output_param == "-both":
+            print(f"Running time (if required): {exec_time:.4f}")
+            print(f"Comparisons (if required): {comps}")
+            print()
 
 
 def command_4(algo_1: str, algo_2: str, input_file: str):
@@ -63,8 +129,45 @@ def command_4(algo_1: str, algo_2: str, input_file: str):
     print(f"Comparisons: {comps1} | {comps2}")
 
 
-def command_5(algo_1: str, algo_2: str, input_size: int, input_order: str):
-    pass
+def command_5(args):
+    """
+    Xử lý Command 5: > python groupid.py -c Algorithm_1 Algorithm_2 Input_size Input_order
+    """
+    algo1_name = args[2]
+    algo2_name = args[3]
+    input_size = int(args[4])
+    input_order = args[5]
+
+    data_type = ORDER_MAP.get(input_order, 0)
+    arr = generate_data(input_size, data_type)
+
+    write_output_file("input.txt", arr) # Ghi mảng đầu vào ra file
+
+    print("COMPARE MODE")
+    print(f"Algorithm: {algo1_name} | {algo2_name}")
+    print(f"Input size: {input_size}")
+    print(f"Input order: {ORDER_NAME.get(input_order, 'Unknown')}")
+    print("-------------------------")
+
+    if algo1_name not in sorting_map or algo2_name not in sorting_map:
+        print("Error: Một trong các thuật toán so sánh chưa được cấu hình.")
+        return
+
+    sort_func1 = sorting_map[algo1_name]
+    sort_func2 = sorting_map[algo2_name]
+
+    # Thuật toán 1
+    tmp = sort_func1(arr)
+    comp1 = tmp[1][1]
+    time1_ms = tmp[1][0]
+
+    # Thuật toán 2
+    tmp = sort_func2(arr)
+    comp2 = tmp[1][1]
+    time2_ms = tmp[1][0]
+
+    print(f"Running time: {time1_ms:.2f} ms | {time2_ms:.2f} ms")
+    print(f"Comparisons: {comp1} | {comp2}")
 
 
 def main():
@@ -80,12 +183,12 @@ def main():
             else:
                 command_1(inp[2], inp[3], inp[4])
         else:
-            command_2(inp[2], int(inp[3]), inp[4], inp[5])
+            command_2(inp)
     else:
         if len(inp) == 5:
             command_4(inp[2], inp[3], inp[4])
         else:
-            command_5(inp[2], inp[3], int(inp[4]), inp[5])
+            command_5(inp)
 
 
 if __name__ == '__main__':
