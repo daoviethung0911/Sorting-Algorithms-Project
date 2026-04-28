@@ -7,4 +7,4 @@ def read_input_file(filename: str):
 def write_output_file(filename: str, data: list[int]):
     with open(filename, 'w', encoding = 'utf-8') as f:
         f.write(f'{len(data)}\n')
-        f.write(' '.join(data))
+        f.write(' '.join(map(str, data)))
