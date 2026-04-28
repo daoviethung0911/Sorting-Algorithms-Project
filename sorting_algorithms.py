@@ -55,7 +55,6 @@ def insertion_sort(L: list):
     running_time = (end_time - start_time) * 1000
     return data, (running_time, cmp_cnt)
 
-
 def binary_search(arr, val, start, end, cnt):
     cnt[0] += 1
     if start == end:
@@ -80,7 +79,7 @@ def binary_search(arr, val, start, end, cnt):
             return binary_search(arr, val, start, mid - 1, cnt)
         else:
             return mid
-
+        
 def binary_insertion_sort(L: list):
     data = L.copy()
     start_time = time.perf_counter()
@@ -263,50 +262,6 @@ def merge_sort_add(arr, cnt):
     merge(arr1, arr2, arr, cnt)
 
 def merge_sort(L: list):
-    data = L.copy()
-    start_time = time.perf_counter()
-    cmp_cnt = [0] 
-
-    merge_sort_add(data, cmp_cnt)
-    
-    end_time = time.perf_counter()
-    running_time = end_time - start_time
-    return data, (running_time * 1000, cmp_cnt[0])
-
-
-def partitional_hoare(arr, low, high, cnt):
-    i, j = low - 1, high + 1
-    # Randomized Quick Sort
-    # tránh trường hợp xấu nhất O(N^2) khi mảng đã được sort sẵn.
-    # rd_idx = random.randint(low, high)
-    # arr[low], arr[rd_idx] = arr[rd_idx], arr[low]
-    p = arr[low]
-    while True: 
-        while True: # Tìm phần tử bên trái lớn hơn hoặc bằng pivot
-            i += 1
-            cnt[0] += 1
-            if arr[i] >= p:
-                break
-        while True: # Tìm phần tử bên phải nhỏ hơn hoặc bằng pivot
-            j -= 1
-            cnt[0] += 1
-            if arr[j] <= p:
-                break
-        cnt[0] += 1
-        if i >= j:
-            break
-        arr[i], arr[j] = arr[j], arr[i]
-    return j
-
-def quick_sort_hoare(arr, low, high, cnt):
-    cnt[0] += 1
-    if low >= high:
-        return
-        
-    pivot = partitional_hoare(arr, low, high, cnt)
-    quick_sort_hoare(arr, low, pivot, cnt)
-    quick_sort_hoare(arr, pivot + 1, high, cnt)      
-    
     data = L.copy()
     start_time = time.perf_counter()
     cmp_cnt = [0] 
