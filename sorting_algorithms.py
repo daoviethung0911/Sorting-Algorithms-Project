@@ -535,3 +535,9 @@ ORDER_NAME = {
     "-rev": "Reversed",
     "-nsorted": "Nearly Sorted"
 }
+ORDER_MAP_2 = {
+    "Randomize": 0,
+    "Sorted": 1,
+    "Reversed": 2,
+    "Nearly Sorted": 3
+}

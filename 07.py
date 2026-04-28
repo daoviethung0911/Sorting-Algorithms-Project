@@ -80,7 +80,7 @@ def command_3(algo_name: str, input_size: int, output_param: str):
     for order in ["Randomize", "Nearly Sorted", "Sorted", "Reversed"]:
         print(f"Input order: {order}")
         print('-------------')
-        arr = generate_data(input_size, data_type=ORDER_MAP[order])
+        arr = generate_data(input_size, data_type=ORDER_MAP_2[order])
         if order == "Randomize":
             write_output_file("input1.txt", arr)
         elif order == "Nearly Sorted":
