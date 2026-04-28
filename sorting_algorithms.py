@@ -101,25 +101,6 @@ def binary_insertion_sort(L: list):
     running_time = end_time - start_time
 
     return data, (running_time * 1000, cmp_cnt[0])
-    data = L.copy()
-    start_time = time.perf_counter()
-    cmp_cnt = [0]
-    
-    for i in range(1, len(data)):
-        cmp_cnt[0] += 1
-        val = data[i]
-        
-        # Tìm vị trí chèn bằng Binary Search
-        j = binary_search(data, val, 0, i - 1, cmp_cnt)
-        
-        data = data[:j] + [val] + data[j:i] + data[i+1:]
-        
-    cmp_cnt[0] += 1 # Lần kiểm tra kết thúc vòng lặp for
-    
-    end_time = time.perf_counter()
-    running_time = end_time - start_time
-
-    return data, (running_time * 1000, cmp_cnt[0])
 
 
 def bubble_sort(L: list):
