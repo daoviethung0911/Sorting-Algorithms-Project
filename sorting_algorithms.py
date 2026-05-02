@@ -92,7 +92,8 @@ def binary_insertion_sort(L: list):
         # Tìm vị trí chèn bằng Binary Search
         j = binary_search(data, val, 0, i - 1, cmp_cnt)
         
-        data = data[:j] + [val] + data[j:i] + data[i+1:]
+        data.pop(i)
+        data.insert(j, val)
         
     cmp_cnt[0] += 1 # Lần kiểm tra kết thúc vòng lặp for
     
