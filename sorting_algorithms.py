@@ -280,6 +280,14 @@ def partitional_hoare(arr, low, high, cnt):
     # tránh trường hợp xấu nhất O(N^2) khi mảng đã được sort sẵn.
     # rd_idx = random.randint(low, high)
     # arr[low], arr[rd_idx] = arr[rd_idx], arr[low]
+    mid = (low + high) // 2
+    if arr[low] > arr[mid]:
+        arr[low], arr[mid] = arr[mid], arr[low]
+    if arr[low] > arr[high]:
+        arr[low], arr[high] = arr[high], arr[low]
+    if arr[mid] > arr[high]:
+        arr[mid], arr[high] = arr[high], arr[mid]
+    arr[low], arr[mid] = arr[mid], arr[low]
     p = arr[low]
     while True: 
         while True: # Tìm phần tử bên trái lớn hơn hoặc bằng pivot
