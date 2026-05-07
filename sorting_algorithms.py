@@ -281,6 +281,7 @@ def partitional_hoare(arr, low, high, cnt):
     # rd_idx = random.randint(low, high)
     # arr[low], arr[rd_idx] = arr[rd_idx], arr[low]
     mid = (low + high) // 2
+    cnt[0] += 3
     if arr[low] > arr[mid]:
         arr[low], arr[mid] = arr[mid], arr[low]
     if arr[low] > arr[high]:
