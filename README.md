@@ -31,7 +31,7 @@ Khi biên dịch và chạy chương trình, vui lòng sử dụng chính xác c
 
 ---
 
-## 3. Cú pháp thực thi (Commands)
+## 3. Cú pháp thực thi
 
 Vui lòng mở Terminal/Command Prompt và chạy các lệnh theo 5 cú pháp chuẩn dưới đây(Có thể thay python bằng pypy nếu sử dụng pypy).
 
