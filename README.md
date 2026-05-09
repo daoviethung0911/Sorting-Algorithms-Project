@@ -9,7 +9,7 @@ Mã nguồn của dự án được chia thành 4 tập tin chính:
 *   `7.py`: Tập tin thực thi chính của chương trình. Chịu trách nhiệm phân tích tham số từ dòng lệnh và điều hướng thực thi đến 1 trong 5 lệnh (command) tương ứng.
 *   `sorting_algorithms.py`: Chứa mã nguồn cài đặt của 12 thuật toán sắp xếp. Mỗi hàm thuật toán trả về một danh sách: `[sorted_array, (time, comparisons)]`.
 *   `data_generator.py`: Hàm sinh dữ liệu đầu vào. Hỗ trợ tạo các mảng dữ liệu với nhiều kích thước và thứ tự khác nhau.
-*   `file_io.py`: Xử lý các thao tác đọc và ghi tập tin. Bao gồm hàm đọc mảng dữ liệu từ tập tin và hàm ghi dữ liệu ra tập tin.
+*   `file_io.py`: Xử lý các thao tác đọc và ghi tập tin. Bao gồm hàm đọc mảng từ tập tin và hàm ghi dữ liệu ra tập tin.
 
 ## 2. Các tham số dòng lệnh hợp lệ
 
@@ -33,36 +33,36 @@ Khi biên dịch và chạy chương trình, vui lòng sử dụng chính xác c
 
 ## 3. Cú pháp thực thi (Commands)
 
-Vui lòng mở Terminal/Command Prompt và chạy các lệnh theo 5 cú pháp chuẩn dưới đây.
+Vui lòng mở Terminal/Command Prompt và chạy các lệnh theo 5 cú pháp chuẩn dưới đây(Có thể thay python bằng pypy nếu sử dụng pypy).
 
 ### Chế độ Thuật toán (Algorithm mode: `-a`)
 
 **Lệnh 1: Chạy một thuật toán trên dữ liệu từ tập tin đầu vào có sẵn.**
 > **Cú pháp:** `python 7.py -a [Algorithm] [Input_file] [Output_parameter]`
 *   *Ví dụ:* `python 7.py -a radix-sort input.txt -both`
-*   *Kết xuất:* Ghi mảng đã sắp xếp ra tập tin `output.txt`.
+*   *Ghi vào tập tin:* Ghi mảng đã sắp xếp ra tập tin `output.txt`.
 
 **Lệnh 2: Chạy một thuật toán trên dữ liệu được sinh tự động.**
 > **Cú pháp:** `python 7.py -a [Algorithm] [Input_size] [Input_order] [Output_parameter]`
 *   *Ví dụ:* `python 7.py -a selection-sort 50 -rand -time`
-*   *Kết xuất:* Ghi mảng vừa sinh ra tập tin `input.txt` và mảng đã sắp xếp ra tập tin `output.txt`.
+*   *Ghi vào tập tin:* Ghi mảng vừa sinh ra tập tin `input.txt` và mảng đã sắp xếp ra tập tin `output.txt`.
 
 **Lệnh 3: Chạy một thuật toán trên TẤT CẢ các thứ tự dữ liệu của một kích thước chỉ định.**
 > **Cú pháp:** `python 7.py -a [Algorithm] [Input_size] [Output_parameter]`
 *   *Ví dụ:* `python 7.py -a quick-sort 70000 -comp`
-*   *Kết xuất:* Sinh ra và ghi vào 4 tập tin đầu vào: `input_1.txt` (ngẫu nhiên), `input_2.txt` (gần như sắp xếp), `input_3.txt` (đã sắp xếp), và `input_4.txt` (sắp xếp ngược).
+*   *Ghi vào tập tin:* Sinh ra và ghi vào 4 tập tin đầu vào: `input_1.txt` (random), `input_2.txt` (nearly sorted), `input_3.txt` (sorted), và `input_4.txt` (reversed).
 
 ### Chế độ So sánh (Comparison mode: `-c`)
 
 **Lệnh 4: Chạy hai thuật toán trên dữ liệu từ tập tin đầu vào có sẵn để so sánh.**
 > **Cú pháp:** `python 7.py -c [Algorithm_1] [Algorithm_2] [Input_file]`
 *   *Ví dụ:* `python 7.py -c heap-sort merge-sort input.txt`
-*   *Kết xuất:* Không ghi tập tin. Kết quả so sánh được in trực tiếp ra màn hình console.
+*   *Ghi vào tập tin:* Không ghi tập tin. Kết quả so sánh cả time và comparisons sẽ in được in trực tiếp ra màn hình console.
 
 **Lệnh 5: Chạy hai thuật toán trên dữ liệu được sinh tự động để so sánh.**
 > **Cú pháp:** `python 7.py -c [Algorithm_1] [Algorithm_2] [Input_size] [Input_order]`
 *   *Ví dụ:* `python 7.py -c quick-sort merge-sort 100000 -nsorted`
-*   *Kết xuất:* Ghi mảng vừa sinh ra tập tin `input.txt`.
+*   *Ghi vào tập tin:* Ghi mảng vừa sinh ra tập tin `input.txt`. Kết quả so sánh cả time và comparisons sẽ in được in trực tiếp ra màn hình console.
 
 ---
 
