@@ -3,6 +3,7 @@ from file_io import *
 from data_generator import *
 import sys
 import threading
+sys.setrecursionlimit(1000000000)
 def command_1(algo_name: str, input_file: str, output_param: str):
     arr = read_input_file(input_file)
     input_size = len(arr)
@@ -193,8 +194,9 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.setrecursionlimit(1000000000)
-    threading.stack.size(134217728)
-    thread = threading.Thread(target = main)
-    thread.start
-    main()
+    # 2. Ép Windows cấp phát 128MB cho Stack (Đơn vị là Byte: 128 * 1024 * 1024)
+    threading.stack_size(134217728)
+    thread = threading.Thread(target=main)
+    thread.start()
+    thread.join()
+
